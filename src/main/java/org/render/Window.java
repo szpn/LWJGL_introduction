@@ -17,7 +17,7 @@ public class Window {
 
     public int width;
     public int height;
-    public int aspectRatio;
+    public float aspectRatio;
 
     private GLFWWindowSizeCallback windowSize;
 
@@ -29,7 +29,7 @@ public class Window {
         GLFWErrorCallback.createPrint(System.err).set();
         this.width = width;
         this.height = height;
-        this.aspectRatio = width/height;
+        this.aspectRatio = (float) width /height;
 
         if(!GLFW.glfwInit()) {
             throw new IllegalStateException("Unable to initialize GLFW");
@@ -70,7 +70,7 @@ public class Window {
                     public void invoke(long window, int width, int height){
                         Boot.window.height = height;
                         Boot.window.width = width;
-                        Boot.window.aspectRatio = width/height;
+                        Boot.window.aspectRatio = (float) width /height;
                         GL11.glViewport(0,0,Boot.window.width, Boot.window.height);
                     }
                 });
@@ -98,7 +98,7 @@ public class Window {
     }
 
     public Matrix4f getProjectionMatrix() {
-        Matrix4f matrix =new Matrix4f().ortho2D(-this.width/2, this.width/2, -this.height/2,this.height/2);
-        return matrix;
+        Matrix4f projectionMatrix = new Matrix4f().perspective(RenderSettings.getFOV(), this.aspectRatio, RenderSettings.getzNear(), RenderSettings.getzFar());
+        return projectionMatrix;
     }
 }

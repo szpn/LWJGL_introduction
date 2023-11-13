@@ -19,18 +19,22 @@ public class Boot {
     public void loop(){
         GL.createCapabilities();
 
-        float[] vertices = {-0.50f,-0.50f,0f,
-                -0.50f, 0.50f, 0,
-                0.50f,0.50f,0f,
-                0.50f, -0.5f,0};
+        float[] vertices = {-0.5f,-0.5f,-2f,
+                -0.5f, 0.5f, -2f,
+                0.5f,0.5f,-2f,
+                0.5f, -0.5f,-2f};
+//        float[] vertices = {-50f, -50f, -1f,
+//        -50f, 50f, -1f,
+//        50f, 50f, -1f,
+//        50f, -50f, -1f};
         int[] indices = {0,1,2,
                 0,2,3};
 
-        Mesh mesh1 = MeshLoader.createSimpleMesh(vertices, indices);
+        //Mesh mesh1 = MeshLoader.createSimpleMesh(vertices, indices);
         float[] colors = {1f, 1f, 1f,
                             1f, 0f, 0f,
-                            0f, 1f, 0f,
-                            0f, 0f, 1f};
+                            1f, 1f, 0f,
+                            1f, 0f, 1f};
         Mesh mesh2 = MeshLoader.createColoredMesh(vertices, indices, colors);
 
         Render render = new Render();

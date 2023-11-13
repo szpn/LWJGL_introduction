@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.joml.Vector3f;
 import org.joml.Matrix4f;
+import org.lwjgl.system.MemoryStack;
 
 
 public abstract class Shader{
@@ -17,6 +18,7 @@ public abstract class Shader{
     private int fragmentID;
 
     private FloatBuffer matrix = BufferUtils.createFloatBuffer(16);
+    private MemoryStack stack = MemoryStack.stackPush();
 
     public Shader(String Vert, String Frag){
         vertexID = loadShader(Vert,GL20.GL_VERTEX_SHADER);
@@ -71,6 +73,7 @@ public abstract class Shader{
         value.get(matrix);
         GL20.glUniformMatrix4fv(location, false, matrix);
     }
+
     private static int loadShader(String file, int type) {
         StringBuilder shaderSource = new StringBuilder();
         try {
