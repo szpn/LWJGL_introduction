@@ -27,7 +27,7 @@ public class Render {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT);
     }
 
-    public void render(Mesh mesh){
+    public void renderMesh(Mesh mesh){
         shader.start();
         shader.setProjection(transformation.getProjectionMatrix());
         GL30.glBindVertexArray(mesh.getVaoID());

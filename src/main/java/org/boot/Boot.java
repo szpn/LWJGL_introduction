@@ -42,7 +42,7 @@ public class Boot {
 
         while(!window.shouldClose()) {
             render.cleanup();
-            render.render(mesh2);
+            render.renderMesh(mesh2);
 
             window.update();
         }

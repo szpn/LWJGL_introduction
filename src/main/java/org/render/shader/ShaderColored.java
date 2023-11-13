@@ -5,6 +5,7 @@ import org.joml.Matrix4f;
 public class ShaderColored extends Shader{
 
     private int projectionMatrix;
+    private int worldMatrix;
 
     public ShaderColored() {
         super("Colored.vs", "Colored.fs");
@@ -20,8 +21,13 @@ public class ShaderColored extends Shader{
         this.loadMatrix(projectionMatrix, mat);
     }
 
+    public void setWorldMatrix(Matrix4f mat){
+        this.loadMatrix(worldMatrix, mat);
+    }
+
     @Override
     protected void getAllUniformLocations() {
         this.projectionMatrix = this.getUniformLocation("projectionMatrix");
+        this.worldMatrix = this.getUniformLocation("worldMatrix");
     }
 }
