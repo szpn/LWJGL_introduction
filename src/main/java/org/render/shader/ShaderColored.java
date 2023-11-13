@@ -3,7 +3,7 @@ package org.render.shader;
 public class ShaderColored extends Shader{
 
     public ShaderColored() {
-        super("Vertex.vs", "Fragment.fs");
+        super("Colored.vs", "Colored.fs");
     }
 
     @Override

@@ -46,13 +46,21 @@ public class MeshLoader{
         GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
     }
 
-    public static Mesh createMesh(float[] positions,float[] UVs, int[] indices) {
+    public static Mesh createSimpleMesh(float[] positions, int[] indices) {
         int vao = genVAO();
         storeData(0,3,positions);
-        storeData(1,2,UVs);
         bindIndices(indices);
         GL30.glBindVertexArray(0);
         return new Mesh(vao,indices.length);
+    }
+
+    public static Mesh createColoredMesh(float[] positions, int[] indices, float[] colors){
+        int vao = genVAO();
+        storeData(0, 3, positions);
+        storeData(1, 3, colors);
+        bindIndices(indices);
+        GL30.glBindVertexArray(0);
+        return new Mesh(vao, indices.length);
     }
 
     private static int genVAO() {

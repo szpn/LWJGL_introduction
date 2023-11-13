@@ -24,6 +24,7 @@ public class Mesh {
         return this;
     }
 
+
     public int getTexture(){
         return this.texture;
     }

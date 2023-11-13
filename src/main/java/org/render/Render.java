@@ -21,8 +21,8 @@ public class Render {
         GL20.glEnableVertexAttribArray(0);
         GL20.glEnableVertexAttribArray(1);
         //GL11.glBindTexture(GL11.GL_TEXTURE_2D, mesh.getTexture());
-        //GL11.glDrawElements(GL11.GL_TRIANGLES, mesh.getVertexCount(), GL11.GL_UNSIGNED_INT,0);
-        GL11.glDrawArrays(GL11.GL_TRIANGLE_FAN, 0, mesh.getVertexCount());
+        GL11.glDrawElements(GL11.GL_TRIANGLES, mesh.getVertexCount(), GL11.GL_UNSIGNED_INT,0);
+        //GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, mesh.getVertexCount());
         GL20.glDisableVertexAttribArray(0);
         GL20.glDisableVertexAttribArray(1);
         GL30.glBindVertexArray(0);

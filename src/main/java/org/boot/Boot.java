@@ -20,24 +20,25 @@ public class Boot {
         GL.createCapabilities();
 
         float[] vertices = {-0.50f,-0.50f,0f,
-                0.50f, -0.50f, 0,
-                -0.50f,0.50f,0f,
-                0.50f, 0.5f,0};
+                -0.50f, 0.50f, 0,
+                0.50f,0.50f,0f,
+                0.50f, -0.5f,0};
         int[] indices = {0,1,2,
-                1,2,3};
+                0,2,3};
 
-        float[] UVs = {0f,0f,
-                1f, 1f,
-                0f,0f,
-                1f,0f};
-        Mesh meshmeyek = MeshLoader.createMesh(vertices, UVs,indices).addTexture("coffee.png");
+        Mesh mesh1 = MeshLoader.createSimpleMesh(vertices, indices);
+        float[] colors = {1f, 1f, 1f,
+                            1f, 0f, 0f,
+                            0f, 1f, 0f,
+                            0f, 0f, 1f};
+        Mesh mesh2 = MeshLoader.createColoredMesh(vertices, indices, colors);
 
         Render render = new Render();
 
 
         while(!window.shouldClose()) {
             render.cleanup();
-            render.render(meshmeyek);
+            render.render(mesh2);
 
             window.update();
         }
