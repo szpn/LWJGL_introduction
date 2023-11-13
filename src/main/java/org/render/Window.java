@@ -97,8 +97,7 @@ public class Window {
         GLFW.glfwSetErrorCallback(null).free();
     }
 
-    public Matrix4f getProjectionMatrix() {
-        Matrix4f projectionMatrix = new Matrix4f().perspective(RenderSettings.getFOV(), this.aspectRatio, RenderSettings.getzNear(), RenderSettings.getzFar());
-        return projectionMatrix;
+    public float getAspectRatio(){
+        return this.aspectRatio;
     }
 }

@@ -11,14 +11,15 @@ import org.render.shader.ShaderTextured;
 public class Render {
 
     ShaderColored shader;
+    Transformation transformation;
 
     public Render(){
         init();
     }
 
     private void init(){
+        transformation = new Transformation();
         shader = new ShaderColored();
-        shader.setProjection(Boot.window.getProjectionMatrix());
     }
 
 
@@ -28,7 +29,7 @@ public class Render {
 
     public void render(Mesh mesh){
         shader.start();
-        shader.setProjection(Boot.window.getProjectionMatrix());
+        shader.setProjection(transformation.getProjectionMatrix());
         GL30.glBindVertexArray(mesh.getVaoID());
         GL20.glEnableVertexAttribArray(0);
         GL20.glEnableVertexAttribArray(1);
