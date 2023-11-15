@@ -9,6 +9,7 @@ import org.lwjgl.opengl.*;
 import org.lwjgl.system.MemoryStack;
 
 
+import static org.lwjgl.opengl.GL11C.GL_DEPTH_TEST;
 import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
@@ -76,8 +77,8 @@ public class Window {
                 });
 
 
-
         GL.createCapabilities();
+        GL11.glEnable(GL_DEPTH_TEST);
     }
 
     public void update() {

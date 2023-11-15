@@ -35,19 +35,40 @@ public class Boot {
         ShaderColored shaderColored = shaderManager.getShaderColored();
         WOManager.registerShader(shaderColored);
 
-        float[] vertices = {-0.5f,-0.5f,-2f,
-                -0.5f, 0.5f, -2f,
-                0.5f,0.5f,-2f,
-                0.5f, -0.5f,-2f};
-        int[] indices = {0,1,2,
-                0,2,3};
-        float[] colors = {1f, 1f, 1f,
-                            1f, 0f, 0f,
-                            1f, 1f, 0f,
-                            1f, 0f, 1f};
+        float[] vertices = {
+                -0.5f,  0.5f,   -0.5f,
+                -0.5f,  -0.5f,  -0.5f,
+                0.5f,   0.5f,   -0.5f,
+                0.5f,   -0.5f,  -0.5f,
+                -0.5f,  0.5f,  0.5f,
+                -0.5f,  -0.5f,   0.5f,
+                0.5f,   0.5f,   0.5f,
+                0.5f,   -0.5f,  0.5f,
+        };
+        int[] indices = {
+                4,5,6,6,5,7, //front
+                0,1,2,2,1,3, //back
+                0,1,4,4,1,5, //left
+                6,7,2,2,7,3, // right
+                3,1,7,7,1,5, //bottom
+                2,0,6,6,0,4 //top
+
+
+        };
+        float[] colors = {
+                0.5f, 0.0f, 0.0f,
+                0.0f, 0.5f, 0.0f,
+                0.0f, 0.0f, 0.5f,
+                0.0f, 0.5f, 0.5f,
+                0.5f, 0.0f, 0.0f,
+                0.0f, 0.5f, 0.0f,
+                0.0f, 0.0f, 0.5f,
+                0.0f, 0.5f, 0.5f,
+        };
         Mesh mesh1 = MeshLoader.createColoredMesh(vertices, indices, colors);
         WorldObject wo1 = new WorldObject(mesh1);
         wo1.addShader(shaderColored);
+        wo1.setPosition(0,0,-2f);
 
 
         Render render = new Render();
@@ -57,6 +78,8 @@ public class Boot {
             for(Shader shader : WOManager.getRegisteredShaders()){
                 render.enableShader(shader);
                 for(WorldObject wo : WOManager.getWorldObjectsUsingShader(shader)){
+                    float rotation = wo.getRotation().y + 0.5f;
+                    wo.setRotation(0, rotation, rotation);
                     render.renderWorldObject(wo);
                 }
                 render.disableCurrentShader();
