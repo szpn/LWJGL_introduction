@@ -1,18 +1,32 @@
 package org.worldobject;
 
 import org.joml.Vector3f;
+import org.manager.WorldObjectManager;
 import org.render.Mesh;
+import org.render.shader.Shader;
 
 public class WorldObject {
+    private static WorldObjectManager WOManager;
     private final Mesh mesh;
     private final Vector3f position;
     private float scale;
     private Vector3f rotation;
     public WorldObject(Mesh mesh){
+        if(!isManagerBound()){
+            throw new RuntimeException("WorldObjectManager is not bound to WorldObject class!");
+        }
         this.mesh = mesh;
         this.position = new Vector3f(0,0,0);
         this.scale = 1f;
         this.rotation = new Vector3f(0,0,0);
+    }
+
+    public static void bindWorldObjectManager(WorldObjectManager manager){
+        WOManager = manager;
+    }
+
+    private boolean isManagerBound(){
+        return WOManager != null;
     }
 
     public Vector3f getPosition(){
@@ -45,5 +59,9 @@ public class WorldObject {
 
     public Mesh getMesh() {
         return mesh;
+    }
+
+    public void addShader(Shader shader){
+        WOManager.registerWorldObject(this, shader);
     }
 }

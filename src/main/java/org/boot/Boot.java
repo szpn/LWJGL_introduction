@@ -26,6 +26,7 @@ public class Boot {
     private ShaderManager shaderManager;
     private void initManagers(){
         WOManager = new WorldObjectManager();
+        WorldObject.bindWorldObjectManager(WOManager);
         shaderManager = new ShaderManager();
     }
 
@@ -46,7 +47,7 @@ public class Boot {
                             1f, 0f, 1f};
         Mesh mesh1 = MeshLoader.createColoredMesh(vertices, indices, colors);
         WorldObject wo1 = new WorldObject(mesh1);
-        WOManager.registerWorldObject(wo1, shaderColored);
+        wo1.addShader(shaderColored);
 
 
         Render render = new Render();
