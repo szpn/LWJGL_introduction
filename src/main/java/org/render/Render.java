@@ -10,9 +10,7 @@ import org.render.shader.ShaderTextured;
 import org.worldobject.WorldObject;
 
 public class Render {
-
-    Shader shader;
-    Transformation transformation;
+    private Transformation transformation;
 
     public Render(){
         init();
@@ -29,7 +27,7 @@ public class Render {
 
     public void renderMesh(Mesh mesh){
         GL30.glBindVertexArray(mesh.getVaoID());
-        GL20.glEnableVertexAttribArray(0);
+        GL20.glEnableVertexAttribArray(0); //TODO: should be based on shader attrib count
         GL20.glEnableVertexAttribArray(1);
         GL11.glDrawElements(GL11.GL_TRIANGLES, mesh.getVertexCount(), GL11.GL_UNSIGNED_INT,0);
         GL20.glDisableVertexAttribArray(0);
@@ -37,7 +35,9 @@ public class Render {
         GL30.glBindVertexArray(0);
     }
 
+    private Shader shader;
     public void renderWorldObject(WorldObject wo){
+        shader.setWorldMatrix(transformation.getWorldMatrix(wo.getPosition(), wo.getScale(), wo.getRotation()));
         Mesh mesh = wo.getMesh();
         renderMesh(mesh);
     }

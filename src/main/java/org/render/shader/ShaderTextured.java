@@ -3,7 +3,8 @@ package org.render.shader;
 import org.joml.Matrix4f;
 
 public class ShaderTextured extends Shader{
-    private int locationProjection;
+    private int projectionMatrix;
+    private int worldMatrix;
     public ShaderTextured() {
         super("Textured.vs", "Textured.fs");
     }
@@ -15,11 +16,16 @@ public class ShaderTextured extends Shader{
     }
 
     public void setProjection(Matrix4f mat) {
-        this.loadMatrix(locationProjection, mat);
+        this.loadMatrix(projectionMatrix, mat);
+    }
+
+    public void setWorldMatrix(Matrix4f mat){
+        this.loadMatrix(worldMatrix, mat);
     }
 
     @Override
     protected void getAllUniformLocations() {
-        this.locationProjection = this.getUniformLocation("projection");
+        this.projectionMatrix = this.getUniformLocation("projectionMatrix");
+        this.worldMatrix = this.getUniformLocation("worldMatrix");
     }
 }

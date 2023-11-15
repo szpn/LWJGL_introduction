@@ -47,6 +47,8 @@ public abstract class Shader{
 
     public abstract void setProjection(Matrix4f mat);
 
+    public abstract void setWorldMatrix(Matrix4f mat);
+
     protected int getUniformLocation(String uniformName) {
         return GL20.glGetUniformLocation(programID, uniformName);
     }
