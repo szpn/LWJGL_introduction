@@ -7,7 +7,10 @@ import org.manager.WorldObjectManager;
 import org.render.*;
 import org.render.shader.Shader;
 import org.render.shader.ShaderColored;
+import org.render.shader.ShaderTextured;
 import org.worldobject.WorldObject;
+
+import static java.lang.System.exit;
 
 public class Boot {
     public static Window window;
@@ -33,8 +36,9 @@ public class Boot {
     public void loop(){
         GL.createCapabilities();
         ShaderColored shaderColored = shaderManager.getShaderColored();
+        ShaderTextured shaderTextured = shaderManager.getShaderTextured();
         WOManager.registerShader(shaderColored);
-
+        WOManager.registerShader(shaderTextured);
         float[] vertices = {
                 -0.5f,  0.5f,   -0.5f,
                 -0.5f,  -0.5f,  -0.5f,
@@ -65,11 +69,28 @@ public class Boot {
                 0.0f, 0.0f, 0.5f,
                 0.0f, 0.5f, 0.5f,
         };
+        float[] UVs = {
+                0f, 0f,
+                0f, 1f,
+                1f, 0f,
+                1f, 1f,
+                1f, 0f,
+                1f, 1f,
+                0f, 0f,
+                0f, 1f
+        };
         Mesh mesh1 = MeshLoader.createColoredMesh(vertices, indices, colors);
-        WorldObject wo1 = new WorldObject(mesh1);
-        wo1.addShader(shaderColored);
-        wo1.setPosition(0,0,-2f);
+        Mesh mesh2 = MeshLoader.createTexturedMesh(vertices, indices, UVs);
 
+
+        WorldObject woColored = new WorldObject(mesh1);
+        woColored.addShader(shaderColored);
+        woColored.setPosition(1,0,-2f);
+
+        WorldObject woTextured = new WorldObject(mesh2);
+        woTextured.addShader(shaderTextured);
+        woTextured.addTextureURI("bricks.jpg");
+        woTextured.setPosition(-1,0,-2f);
 
         Render render = new Render();
         while(!window.shouldClose()) {
@@ -78,8 +99,8 @@ public class Boot {
             for(Shader shader : WOManager.getRegisteredShaders()){
                 render.enableShader(shader);
                 for(WorldObject wo : WOManager.getWorldObjectsUsingShader(shader)){
-                    float rotation = wo.getRotation().y + 0.5f;
-                    wo.setRotation(0, rotation, rotation);
+                    float rotation = wo.getRotation().x + 0.5f;
+                    wo.setRotation(rotation, 0, 0);
                     render.renderWorldObject(wo);
                 }
                 render.disableCurrentShader();

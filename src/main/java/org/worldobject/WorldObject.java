@@ -3,11 +3,13 @@ package org.worldobject;
 import org.joml.Vector3f;
 import org.manager.WorldObjectManager;
 import org.render.Mesh;
+import org.render.Texture;
 import org.render.shader.Shader;
 
 public class WorldObject {
     private static WorldObjectManager WOManager;
     private final Mesh mesh;
+    private String texture =  "missing.png";
     private final Vector3f position;
     private float scale;
     private Vector3f rotation;
@@ -63,5 +65,13 @@ public class WorldObject {
 
     public void addShader(Shader shader){
         WOManager.registerWorldObject(this, shader);
+    }
+
+    public void addTextureURI(String texture){
+        this.texture = texture;
+    }
+
+    public String getTextureURI(){
+        return this.texture;
     }
 }

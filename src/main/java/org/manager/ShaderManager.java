@@ -3,6 +3,8 @@ package org.manager;
 import org.render.shader.ShaderColored;
 import org.render.shader.ShaderTextured;
 
+import static java.lang.System.exit;
+
 public class ShaderManager {
     private ShaderColored shaderColored;
     private ShaderTextured shaderTextured;

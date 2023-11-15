@@ -19,7 +19,7 @@ public class Texture {
             e.printStackTrace();
         }
 
-        if(idMap.containsKey(texture)){
+        if(idMap.containsKey("res/"+texture)){
             return idMap.get("res/"+texture);
         }
 
