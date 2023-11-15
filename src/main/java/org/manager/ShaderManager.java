@@ -7,7 +7,7 @@ public class ShaderManager {
     private ShaderColored shaderColored;
     private ShaderTextured shaderTextured;
     public ShaderManager(){
-
+        Init();
     }
     private void Init(){
         this.shaderColored = new ShaderColored();

@@ -34,6 +34,7 @@ public abstract class Shader{
 
     public void start(){
         GL20.glUseProgram(programID);
+        getAllUniformLocations();
     }
 
     public void stop(){
@@ -43,6 +44,8 @@ public abstract class Shader{
     protected abstract void bindAttributes();
 
     protected abstract void getAllUniformLocations();
+
+    public abstract void setProjection(Matrix4f mat);
 
     protected int getUniformLocation(String uniformName) {
         return GL20.glGetUniformLocation(programID, uniformName);

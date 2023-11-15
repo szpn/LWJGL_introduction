@@ -7,10 +7,11 @@ import org.lwjgl.opengl.GL30;
 import org.render.shader.Shader;
 import org.render.shader.ShaderColored;
 import org.render.shader.ShaderTextured;
+import org.worldobject.WorldObject;
 
 public class Render {
 
-    ShaderColored shader;
+    Shader shader;
     Transformation transformation;
 
     public Render(){
@@ -19,7 +20,6 @@ public class Render {
 
     private void init(){
         transformation = new Transformation();
-        shader = new ShaderColored();
     }
 
 
@@ -28,8 +28,6 @@ public class Render {
     }
 
     public void renderMesh(Mesh mesh){
-        shader.start();
-        shader.setProjection(transformation.getProjectionMatrix());
         GL30.glBindVertexArray(mesh.getVaoID());
         GL20.glEnableVertexAttribArray(0);
         GL20.glEnableVertexAttribArray(1);
@@ -37,6 +35,23 @@ public class Render {
         GL20.glDisableVertexAttribArray(0);
         GL20.glDisableVertexAttribArray(1);
         GL30.glBindVertexArray(0);
+    }
+
+    public void renderWorldObject(WorldObject wo){
+        Mesh mesh = wo.getMesh();
+        renderMesh(mesh);
+    }
+
+    public void enableShader(Shader shader){
+        this.shader = shader;
+        shader.start();
+        shader.setProjection(transformation.getProjectionMatrix());
+    }
+
+    public void disableCurrentShader(){
         shader.stop();
     }
+
+
+
 }
