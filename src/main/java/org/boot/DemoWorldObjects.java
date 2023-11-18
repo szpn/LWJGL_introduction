@@ -1,8 +1,8 @@
 package org.boot;
 
 import org.manager.ShaderManager;
-import org.render.Mesh;
-import org.render.MeshLoader;
+import org.worldobject.Mesh;
+import org.worldobject.MeshLoader;
 import org.render.shader.ShaderColored;
 import org.render.shader.ShaderTextured;
 import org.worldobject.WorldObject;

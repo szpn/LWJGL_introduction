@@ -2,8 +2,6 @@ package org.worldobject;
 
 import org.joml.Vector3f;
 import org.manager.WorldObjectManager;
-import org.render.Mesh;
-import org.render.Texture;
 import org.render.shader.Shader;
 
 public class WorldObject {

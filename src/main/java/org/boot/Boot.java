@@ -40,12 +40,15 @@ public class Boot {
     public void loop(){
         GL.createCapabilities();
 
+        Camera camera = new Camera();
+
         WorldObject texturedDemo = DemoWorldObjects.generateDemoTexturedCubeGameObject();
         WorldObject coloredDemo = DemoWorldObjects.generateDemoColoredCubeGameObject();
 
         Render render = new Render();
         while(!window.shouldClose()) {
             render.cleanup();
+            render.useCameraView(camera);
 
             for(Shader shader : WOManager.getRegisteredShaders()){
                 render.enableShader(shader);
