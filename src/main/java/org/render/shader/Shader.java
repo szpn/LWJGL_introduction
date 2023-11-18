@@ -41,13 +41,13 @@ public abstract class Shader{
         GL20.glUseProgram(0);
     }
 
-    protected abstract void bindAttributes();
-
-    protected abstract void getAllUniformLocations();
-
     public abstract void setProjection(Matrix4f mat);
 
     public abstract void setWorldMatrix(Matrix4f mat);
+
+    protected abstract void bindAttributes();
+
+    protected abstract void getAllUniformLocations();
 
     protected int getUniformLocation(String uniformName) {
         return GL20.glGetUniformLocation(programID, uniformName);

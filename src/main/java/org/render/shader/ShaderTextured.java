@@ -11,11 +11,6 @@ public class ShaderTextured extends Shader{
         super("Textured.vs", "Textured.fs");
     }
 
-    @Override
-    protected void bindAttributes() {
-        super.bindAttribute(0, "position");
-        super.bindAttribute(1, "textureCoords");
-    }
 
     public void setProjection(Matrix4f mat) {
         this.loadMatrix(projectionMatrix, mat);
@@ -28,6 +23,13 @@ public class ShaderTextured extends Shader{
     private void setDefaultTextureSampler(){
         GL20.glUniform1i(this.textureSampler, 0);
     }
+
+    @Override
+    protected void bindAttributes() {
+        super.bindAttribute(0, "position");
+        super.bindAttribute(1, "textureCoords");
+    }
+
 
     @Override
     protected void getAllUniformLocations() {

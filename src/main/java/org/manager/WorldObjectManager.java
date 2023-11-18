@@ -22,11 +22,12 @@ public class WorldObjectManager {
         registeredShaders.get(shader).add(worldObject);
     }
 
+    public List<Shader> getRegisteredShaders(){
+        return new ArrayList<>(registeredShaders.keySet());
+    }
+
     public List<WorldObject> getWorldObjectsUsingShader(Shader shader){
         return registeredShaders.get(shader);
     }
 
-    public List<Shader> getRegisteredShaders(){
-        return new ArrayList<>(registeredShaders.keySet());
-    }
 }

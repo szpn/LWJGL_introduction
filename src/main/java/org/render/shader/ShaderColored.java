@@ -11,18 +11,18 @@ public class ShaderColored extends Shader{
         super("Colored.vs", "Colored.fs");
     }
 
-    @Override
-    protected void bindAttributes() {
-        super.bindAttribute(0, "position");
-        super.bindAttribute(1, "fragmentColor");
-    }
-
     public void setProjection(Matrix4f mat) {
         this.loadMatrix(projectionMatrix, mat);
     }
 
     public void setWorldMatrix(Matrix4f mat){
         this.loadMatrix(worldMatrix, mat);
+    }
+
+    @Override
+    protected void bindAttributes() {
+        super.bindAttribute(0, "position");
+        super.bindAttribute(1, "fragmentColor");
     }
 
     @Override

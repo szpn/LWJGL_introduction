@@ -6,9 +6,20 @@ public class Mesh {
     private int vertices;
     private int texture = 0;
 
+
+
     public Mesh(int vao, int vertex) {
         this.vao = vao;
         this.vertices = vertex;
+    }
+
+    public Mesh addTexture(String texture) {
+        this.texture = Texture.loadTexture(texture);
+        return this;
+    }
+
+    public int getTexture(){
+        return this.texture;
     }
 
     public int getVaoID() {
@@ -19,13 +30,4 @@ public class Mesh {
         return vertices;
     }
 
-    public Mesh addTexture(String texture) {
-        this.texture = Texture.loadTexture(texture);
-        return this;
-    }
-
-
-    public int getTexture(){
-        return this.texture;
-    }
 }
