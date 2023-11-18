@@ -14,19 +14,23 @@ import static java.lang.System.exit;
 
 public class Boot {
     public static Window window;
+    private WorldObjectManager WOManager;
 
     public static void main(String[] args){
         new Boot().run();
     }
     public void run(){
         window = new Window(640,480);
+        window.createInputHandler();
+
         initManagers();
         registerUsedShaders();
+
         loop();
+
         window.terminate();
     }
 
-    private WorldObjectManager WOManager;
     private void initManagers(){
         WOManager = new WorldObjectManager();
         WorldObject.bindWorldObjectManager(WOManager);
@@ -38,8 +42,6 @@ public class Boot {
     }
 
     public void loop(){
-        GL.createCapabilities();
-
         Camera camera = new Camera();
 
         WorldObject texturedDemo = DemoWorldObjects.generateDemoTexturedCubeGameObject();
@@ -47,12 +49,16 @@ public class Boot {
 
         Render render = new Render();
         while(!window.shouldClose()) {
+            window.processInputs();
+
             render.cleanup();
             render.useCameraView(camera);
 
             for(Shader shader : WOManager.getRegisteredShaders()){
                 render.enableShader(shader);
+
                 render.renderWorldObjectsWithSameShader(WOManager.getWorldObjectsUsingShader(shader));
+
                 render.disableCurrentShader();
             }
 

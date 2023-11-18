@@ -3,12 +3,14 @@ package org.render;
 import java.nio.IntBuffer;
 
 import org.boot.Boot;
-import org.joml.Matrix4f;
+import org.input.InputHandler;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.MemoryStack;
 
 
+import static org.lwjgl.glfw.GLFW.GLFW_CURSOR;
+import static org.lwjgl.glfw.GLFW.GLFW_CURSOR_HIDDEN;
 import static org.lwjgl.opengl.GL11C.GL_DEPTH_TEST;
 import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -19,6 +21,8 @@ public class Window {
     public int width;
     public int height;
     public float aspectRatio;
+
+    private InputHandler inputHandler;
 
     private GLFWWindowSizeCallback windowSize;
 
@@ -46,6 +50,7 @@ public class Window {
         }
 
         GLFW.glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {});
+        GLFW.glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
         try(MemoryStack stack = stackPush()){
             IntBuffer pWidth = stack.mallocInt(1);
@@ -81,9 +86,24 @@ public class Window {
         GL11.glEnable(GL_DEPTH_TEST);
     }
 
+    public void createInputHandler(){
+        inputHandler = new InputHandler(window);
+    }
+    public InputHandler getInputHandler(){
+        if(inputHandler == null){
+            throw new RuntimeException("InputHandler was not initialized in window!");
+        }
+        return inputHandler;
+    }
+
+    public void processInputs(){
+        GLFW.glfwPollEvents();
+        inputHandler.processInputs();
+    }
+
+
     public void update() {
         GLFW.glfwSwapBuffers(window);
-        GLFW.glfwPollEvents();
     }
 
     public boolean shouldClose() {
@@ -101,4 +121,6 @@ public class Window {
     public float getAspectRatio(){
         return this.aspectRatio;
     }
+
+
 }

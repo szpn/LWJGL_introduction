@@ -1,4 +1,4 @@
-package org.render;
+package org.settings;
 
 
 import org.joml.Math;

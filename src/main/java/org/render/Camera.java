@@ -1,18 +1,30 @@
 package org.render;
 
+import org.boot.Boot;
+import org.input.InputListener;
+import org.input.inputevent.MouseEvent;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.settings.CameraSettings;
 
-public class Camera {
+public class Camera extends InputListener{
     private final Vector3f position;
     private final Vector3f rotation;
 
     public Camera(Vector3f position, Vector3f rotation) {
         this.position = position;
         this.rotation = rotation;
+        Boot.window.getInputHandler().addEventListener(MouseEvent.MOUSE_MOVED, this);
     }
 
     public Camera() {
         this(new Vector3f(0,0,0), new Vector3f(0,0,0));
+    }
+
+    @Override
+    protected void mouseMoved(Vector2f displacementPosition){
+        float sensitivity = CameraSettings.getMouseSensitivity();
+        this.moveRotation(displacementPosition.x * sensitivity , displacementPosition.y * sensitivity, 0);
     }
 
     public Vector3f getPosition() {
