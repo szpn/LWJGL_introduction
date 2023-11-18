@@ -6,6 +6,8 @@ import org.lwjgl.opengl.GL30;
 import org.render.shader.Shader;
 import org.worldobject.WorldObject;
 
+import java.util.List;
+
 public class Render {
     private Transformation transformation;
     private Shader shader;
@@ -26,6 +28,14 @@ public class Render {
 
     public void disableCurrentShader(){
         shader.stop();
+    }
+
+    public void renderWorldObjectsWithSameShader(List<WorldObject> WOs){
+        for(WorldObject wo : WOs){
+            float rotation = wo.getRotation().x + 0.5f;
+            wo.setRotation(rotation, 0, 0);
+            renderWorldObject(wo);
+        }
     }
 
 

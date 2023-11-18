@@ -21,76 +21,27 @@ public class Boot {
     public void run(){
         window = new Window(640,480);
         initManagers();
+        registerUsedShaders();
         loop();
         window.terminate();
     }
 
     private WorldObjectManager WOManager;
-    private ShaderManager shaderManager;
     private void initManagers(){
         WOManager = new WorldObjectManager();
         WorldObject.bindWorldObjectManager(WOManager);
-        shaderManager = new ShaderManager();
+    }
+
+    private void registerUsedShaders(){
+        WOManager.registerShader(ShaderManager.getShaderColored());
+        WOManager.registerShader(ShaderManager.getShaderTextured());
     }
 
     public void loop(){
         GL.createCapabilities();
-        ShaderColored shaderColored = shaderManager.getShaderColored();
-        ShaderTextured shaderTextured = shaderManager.getShaderTextured();
-        WOManager.registerShader(shaderColored);
-        WOManager.registerShader(shaderTextured);
-        float[] vertices = {
-                -0.5f,  0.5f,   -0.5f,
-                -0.5f,  -0.5f,  -0.5f,
-                0.5f,   0.5f,   -0.5f,
-                0.5f,   -0.5f,  -0.5f,
-                -0.5f,  0.5f,  0.5f,
-                -0.5f,  -0.5f,   0.5f,
-                0.5f,   0.5f,   0.5f,
-                0.5f,   -0.5f,  0.5f,
-        };
-        int[] indices = {
-                4,5,6,6,5,7, //front
-                0,1,2,2,1,3, //back
-                0,1,4,4,1,5, //left
-                6,7,2,2,7,3, // right
-                3,1,7,7,1,5, //bottom
-                2,0,6,6,0,4 //top
 
-
-        };
-        float[] colors = {
-                0.5f, 0.0f, 0.0f,
-                0.0f, 0.5f, 0.0f,
-                0.0f, 0.0f, 0.5f,
-                0.0f, 0.5f, 0.5f,
-                0.5f, 0.0f, 0.0f,
-                0.0f, 0.5f, 0.0f,
-                0.0f, 0.0f, 0.5f,
-                0.0f, 0.5f, 0.5f,
-        };
-        float[] UVs = {
-                0f, 0f,
-                0f, 1f,
-                1f, 0f,
-                1f, 1f,
-                1f, 0f,
-                1f, 1f,
-                0f, 0f,
-                0f, 1f
-        };
-        Mesh mesh1 = MeshLoader.createColoredMesh(vertices, indices, colors);
-        Mesh mesh2 = MeshLoader.createTexturedMesh(vertices, indices, UVs);
-
-
-        WorldObject woColored = new WorldObject(mesh1);
-        woColored.addShader(shaderColored);
-        woColored.setPosition(1,0,-2f);
-
-        WorldObject woTextured = new WorldObject(mesh2);
-        woTextured.addShader(shaderTextured);
-        woTextured.addTextureURI("bricks.jpg");
-        woTextured.setPosition(-1,0,-2f);
+        WorldObject texturedDemo = DemoWorldObjects.generateDemoTexturedCubeGameObject();
+        WorldObject coloredDemo = DemoWorldObjects.generateDemoColoredCubeGameObject();
 
         Render render = new Render();
         while(!window.shouldClose()) {
@@ -98,13 +49,8 @@ public class Boot {
 
             for(Shader shader : WOManager.getRegisteredShaders()){
                 render.enableShader(shader);
-                for(WorldObject wo : WOManager.getWorldObjectsUsingShader(shader)){
-                    float rotation = wo.getRotation().x + 0.5f;
-                    wo.setRotation(rotation, 0, 0);
-                    render.renderWorldObject(wo);
-                }
+                render.renderWorldObjectsWithSameShader(WOManager.getWorldObjectsUsingShader(shader));
                 render.disableCurrentShader();
-
             }
 
             window.update();

@@ -18,12 +18,12 @@ public class WorldObjectManager {
         registeredShaders.put(shader, new ArrayList<>());
     }
 
-    public void registerWorldObject(WorldObject worldObject, Shader shader){
-        registeredShaders.get(shader).add(worldObject);
-    }
-
     public List<Shader> getRegisteredShaders(){
         return new ArrayList<>(registeredShaders.keySet());
+    }
+
+    public void registerWorldObject(WorldObject worldObject, Shader shader){
+        registeredShaders.get(shader).add(worldObject);
     }
 
     public List<WorldObject> getWorldObjectsUsingShader(Shader shader){

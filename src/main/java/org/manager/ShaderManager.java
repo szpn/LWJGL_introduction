@@ -6,21 +6,14 @@ import org.render.shader.ShaderTextured;
 import static java.lang.System.exit;
 
 public class ShaderManager {
-    private ShaderColored shaderColored;
-    private ShaderTextured shaderTextured;
-    public ShaderManager(){
-        Init();
-    }
-    private void Init(){
-        this.shaderColored = new ShaderColored();
-        this.shaderTextured = new ShaderTextured();
-    }
+    private static ShaderColored shaderColored  = new ShaderColored();
+    private static ShaderTextured shaderTextured = new ShaderTextured();
 
-    public ShaderColored getShaderColored() {
+    public static ShaderColored getShaderColored() {
         return shaderColored;
     }
 
-    public ShaderTextured getShaderTextured() {
+    public static ShaderTextured getShaderTextured() {
         return shaderTextured;
     }
 }
