@@ -58,9 +58,9 @@ public class DemoWorldObjects {
                 1f, 1f
         };
         Mesh mesh = MeshLoader.createTexturedMesh(vertices, indices, UVs);
+        mesh.addTextureFromFile("bricks.jpg");
         WorldObject demoTexturedObject = new WorldObject(mesh);
         demoTexturedObject.addShader(shaderTextured);
-        demoTexturedObject.addTextureURI("bricks.jpg");
         demoTexturedObject.setPosition(1,0,-2f);
 
         return demoTexturedObject;

@@ -1,5 +1,6 @@
 package org.render;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -8,9 +9,17 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
+
+import javax.swing.text.BadLocationException;
+
+//TODO: cleanup this class
 public class Texture {
     private static HashMap<String, Integer> idMap = new HashMap<String, Integer>();
+    private final static int missingTextureID;
 
+    static {
+        missingTextureID = loadTexture("missing.png");
+    }
 
     public static int loadTexture(String texture){
         try (MemoryStack stack = MemoryStack.stackPush()){
@@ -36,7 +45,7 @@ public class Texture {
             String filePath = file.getAbsolutePath();
             buffer = STBImage.stbi_load(filePath, w, h, channels, 4);
             if(buffer ==null) {
-                throw new Exception("Can't load file "+texture+" "+STBImage.stbi_failure_reason());
+                throw new FileNotFoundException("Can't load file "+texture+" "+STBImage.stbi_failure_reason());
             }
             width = w.get();
             height = h.get();
@@ -51,9 +60,12 @@ public class Texture {
             GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
             STBImage.stbi_image_free(buffer);
             return id;
-        } catch(Exception e) {
+        } catch(FileNotFoundException e) {
+            if(texture.equals("missing.png")){
+                throw new IllegalStateException("Could not create default missing texture! Aborting!");
+            }
             e.printStackTrace();
+            return missingTextureID;
         }
-        return 0;
     }
 }

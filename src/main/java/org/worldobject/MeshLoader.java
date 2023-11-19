@@ -31,10 +31,10 @@ public class MeshLoader{
         return new Mesh(vao, indices.length);
     }
 
-    public static Mesh createTexturedMesh(float[] positions, int[] indices, float[] UVs){
+    public static Mesh createTexturedMesh(float[] positions, int[] indices, float[] texCoords){
         int vao = genVAO();
         storeData(0, 3, positions);
-        storeData(1, 2, UVs);
+        storeData(1, 2, texCoords);
         bindIndices(indices);
         GL30.glBindVertexArray(0);
         return new Mesh(vao, indices.length);

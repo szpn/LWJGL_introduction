@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL20;
 import org.joml.Vector3f;
 import org.joml.Matrix4f;
 import org.lwjgl.system.MemoryStack;
+import org.worldobject.Mesh;
 
 
 public abstract class Shader{
@@ -40,6 +41,9 @@ public abstract class Shader{
     public void stop(){
         GL20.glUseProgram(0);
     }
+
+    public abstract void prepareForDrawingMesh(Mesh mesh);
+    public abstract void doneDrawingMesh();
 
     public abstract void setProjection(Matrix4f mat);
 

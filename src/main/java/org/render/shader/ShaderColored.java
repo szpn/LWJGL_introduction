@@ -1,6 +1,8 @@
 package org.render.shader;
 
 import org.joml.Matrix4f;
+import org.lwjgl.opengl.GL20;
+import org.worldobject.Mesh;
 
 public class ShaderColored extends Shader{
 
@@ -10,6 +12,19 @@ public class ShaderColored extends Shader{
     public ShaderColored() {
         super("Colored.vs", "Colored.fs");
     }
+
+    @Override
+    public void prepareForDrawingMesh(Mesh mesh){
+        GL20.glEnableVertexAttribArray(0); //vertex positions
+        GL20.glEnableVertexAttribArray(1); //color values (r,g,b)
+    }
+
+    @Override
+    public void doneDrawingMesh() {
+        GL20.glDisableVertexAttribArray(0);
+        GL20.glDisableVertexAttribArray(1);
+    }
+
 
     public void setProjection(Matrix4f mat) {
         this.loadMatrix(projectionMatrix, mat);

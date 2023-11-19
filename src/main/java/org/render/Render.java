@@ -40,8 +40,8 @@ public class Render {
 
     public void renderWorldObjectsWithSameShader(List<WorldObject> WOs){
         for(WorldObject wo : WOs){
-            //float rotation = wo.getRotation().x + 0.5f;
-            //wo.setRotation(rotation, 0, 0);
+            float rotation = wo.getRotation().x + 0.5f;
+            wo.setRotation(rotation, 0, 0);
             renderWorldObject(wo);
         }
     }
@@ -53,20 +53,16 @@ public class Render {
         shader.setWorldMatrix(objectViewMatrix);
 
         Mesh mesh = wo.getMesh();
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, Texture.loadTexture(wo.getTextureURI()));
-
         renderMesh(mesh);
     }
 
     private void renderMesh(Mesh mesh){
         GL30.glBindVertexArray(mesh.getVaoID());
-        GL20.glEnableVertexAttribArray(0); //TODO: should be based on shader attrib count and type - ShaderTextured should call GL.glActivateTexture(...) etc.
-        GL20.glEnableVertexAttribArray(1);
+
+        shader.prepareForDrawingMesh(mesh);
         GL11.glDrawElements(GL11.GL_TRIANGLES, mesh.getVertexCount(), GL11.GL_UNSIGNED_INT,0);
-        GL20.glDisableVertexAttribArray(0);
-        GL20.glDisableVertexAttribArray(1);
+        shader.doneDrawingMesh();
+
         GL30.glBindVertexArray(0);
     }
 

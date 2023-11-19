@@ -1,7 +1,10 @@
 package org.render.shader;
 
 import org.joml.Matrix4f;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
+import org.worldobject.Mesh;
 
 public class ShaderTextured extends Shader{
     private int projectionMatrix;
@@ -9,6 +12,20 @@ public class ShaderTextured extends Shader{
     private int textureSampler;
     public ShaderTextured() {
         super("Textured.vs", "Textured.fs");
+    }
+
+    @Override
+    public void prepareForDrawingMesh(Mesh mesh){
+        GL13.glActiveTexture(GL13.GL_TEXTURE0);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, mesh.getTextureID());
+        GL20.glEnableVertexAttribArray(0); //vertex positions
+        GL20.glEnableVertexAttribArray(1); //texture coordinates (x,y)
+    }
+
+    @Override
+    public void doneDrawingMesh() {
+        GL20.glDisableVertexAttribArray(0);
+        GL20.glDisableVertexAttribArray(1);
     }
 
 

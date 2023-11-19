@@ -22,7 +22,10 @@ public class WorldObjectManager {
         return new ArrayList<>(registeredShaders.keySet());
     }
 
-    public void registerWorldObject(WorldObject worldObject, Shader shader){
+    public void registerWorldObjectUsesShader(WorldObject worldObject, Shader shader){
+        if(!registeredShaders.containsKey(shader)){
+            throw new IllegalStateException("Trying to add not registered Shader!");
+        }
         registeredShaders.get(shader).add(worldObject);
     }
 
