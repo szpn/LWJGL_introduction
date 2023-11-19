@@ -1,16 +1,12 @@
 package org.boot;
 
 
-import org.lwjgl.opengl.*;
 import org.manager.ShaderManager;
 import org.manager.WorldObjectManager;
 import org.render.*;
+import org.render.camera.Camera;
 import org.render.shader.Shader;
-import org.render.shader.ShaderColored;
-import org.render.shader.ShaderTextured;
 import org.worldobject.WorldObject;
-
-import static java.lang.System.exit;
 
 public class Boot {
     public static Window window;

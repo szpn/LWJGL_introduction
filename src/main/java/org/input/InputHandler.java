@@ -18,7 +18,7 @@ public class InputHandler {
     public InputHandler(long windowID){
         initListenersLists();
         this.mouseInputHandler = new MouseInputHandler(windowID, this);
-        this.keyboardInputHandler = new KeyboardInputHandler(windowID);
+        this.keyboardInputHandler = new KeyboardInputHandler(windowID, this);
         mouseInputHandler.init();
         keyboardInputHandler.init();
     }
@@ -58,17 +58,13 @@ public class InputHandler {
             case MOUSE_MOVED -> mouseInputHandler.getDisplacementVec();
             case MOUSE_LEFT_CLICK -> true;
             case MOUSE_RIGHT_CLICK -> true;
-            default -> throw new RuntimeException("Missing details for " + event.toString());
+            default -> null;
         };
     }
 
     private Object createDetailsForKeyboardEvent(KeyboardEvent event){
         return switch (event){
-            case KEYBOARD_W -> null;
-            case KEYBOARD_S -> null;
-            case KEYBOARD_A -> null;
-            case KEYBOARD_D -> null;
-            default -> throw new RuntimeException("Missing details for " + event.toString());
+            default -> null;
         };
     }
 

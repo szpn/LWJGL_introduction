@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
+import org.render.camera.Camera;
 import org.render.shader.Shader;
 import org.worldobject.Mesh;
 import org.worldobject.WorldObject;

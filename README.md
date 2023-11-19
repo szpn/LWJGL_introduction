@@ -17,7 +17,7 @@ The primary goal of this project is to learn the OpenGL API and enhance my objec
 - [x]  Dynamic modification of WorldObject properties (position, rotation, scale)
 - [x]  Handling mouse and keyboard inputs with listeners
 - [x]  Camera rotation with mouse movement
-- [ ]  Camera movement with keyboard inputs
+- [x]  Camera movement with keyboard inputs
 - [ ]  OBJ file conversion to meshes
 - [ ]  Implementation of light and shadows
 - [ ]  Modularity for WorldObjects

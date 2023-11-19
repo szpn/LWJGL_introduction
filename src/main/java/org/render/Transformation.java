@@ -3,6 +3,7 @@ package org.render;
 import org.boot.Boot;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
+import org.render.camera.Camera;
 import org.settings.RenderSettings;
 import org.worldobject.WorldObject;
 
