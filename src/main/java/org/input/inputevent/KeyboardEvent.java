@@ -40,7 +40,8 @@ public enum KeyboardEvent implements InputEvent{
     KEYBOARD_V_HOLD(86),
     KEYBOARD_W_HOLD(87),
     KEYBOARD_X_HOLD(88),
-    KEYBOARD_Y_HOLD(89);
+    KEYBOARD_Y_HOLD(89),
+    KEYBOARD_ESC_HOLD(256);
 
     private final int keyCode;
     private static final Map<Integer, KeyboardEvent> keyCodeMap = new HashMap<>();

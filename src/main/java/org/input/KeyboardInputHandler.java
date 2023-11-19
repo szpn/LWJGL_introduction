@@ -28,7 +28,7 @@ public class KeyboardInputHandler {
     protected void init() {
 
         GLFW.glfwSetKeyCallback(windowID, (windowHandle, key, scancode, action, mods) -> {
-            if(key < FIRST_KEY_VALUE || key > LAST_KEY_VALUE){
+            if((key < FIRST_KEY_VALUE || key > LAST_KEY_VALUE) && key != KeyboardEvent.KEYBOARD_ESC_HOLD.toKeyCode()){
                 return;
             }
             switch(action){

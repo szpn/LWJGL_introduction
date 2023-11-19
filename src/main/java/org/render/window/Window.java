@@ -1,4 +1,4 @@
-package org.render;
+package org.render.window;
 
 import java.nio.IntBuffer;
 
@@ -7,6 +7,7 @@ import org.input.InputHandler;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.MemoryStack;
+import org.render.camera.CameraController;
 
 
 import static org.lwjgl.glfw.GLFW.GLFW_CURSOR;
@@ -23,11 +24,15 @@ public class Window {
     public float aspectRatio;
 
     private InputHandler inputHandler;
+    private WindowController windowController;
 
     private GLFWWindowSizeCallback windowSize;
 
     public Window(int width, int height) {
         init(width, height);
+        createInputHandler();
+        this.windowController = new WindowController(this);
+        this.windowController.init();
     }
 
     private void init(int width, int height){
@@ -49,7 +54,6 @@ public class Window {
             throw new IllegalStateException("Unable to create GLFW Window");
         }
 
-        GLFW.glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {});
         GLFW.glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
         try(MemoryStack stack = stackPush()){
@@ -86,7 +90,7 @@ public class Window {
         GL11.glEnable(GL_DEPTH_TEST);
     }
 
-    public void createInputHandler(){
+    private void createInputHandler(){
         inputHandler = new InputHandler(window);
     }
     public InputHandler getInputHandler(){
@@ -104,6 +108,10 @@ public class Window {
 
     public void update() {
         GLFW.glfwSwapBuffers(window);
+    }
+
+    protected void closeWindow(){
+        GLFW.glfwSetWindowShouldClose(window, true);
     }
 
     public boolean shouldClose() {
