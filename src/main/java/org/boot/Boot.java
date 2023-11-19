@@ -7,6 +7,7 @@ import org.render.*;
 import org.render.camera.Camera;
 import org.render.shader.Shader;
 import org.render.window.Window;
+import org.settings.WindowSettings;
 import org.worldobject.WorldObject;
 
 public class Boot {
@@ -17,7 +18,7 @@ public class Boot {
         new Boot().run();
     }
     public void run(){
-        window = new Window(640,480);
+        window = new Window(WindowSettings.getWindowWidth(), WindowSettings.getWindowHeight());
 
         initManagers();
         registerUsedShaders();

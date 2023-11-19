@@ -7,11 +7,10 @@ import org.input.InputHandler;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.MemoryStack;
-import org.render.camera.CameraController;
+import org.settings.WindowSettings;
 
 
-import static org.lwjgl.glfw.GLFW.GLFW_CURSOR;
-import static org.lwjgl.glfw.GLFW.GLFW_CURSOR_HIDDEN;
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11C.GL_DEPTH_TEST;
 import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -54,7 +53,7 @@ public class Window {
             throw new IllegalStateException("Unable to create GLFW Window");
         }
 
-        GLFW.glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+        GLFW.glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
         try(MemoryStack stack = stackPush()){
             IntBuffer pWidth = stack.mallocInt(1);
