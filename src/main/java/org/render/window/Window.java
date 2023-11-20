@@ -87,6 +87,7 @@ public class Window {
 
         GL.createCapabilities();
         GL11.glEnable(GL_DEPTH_TEST);
+        //GL11.glPolygonMode( GL11.GL_FRONT_AND_BACK, GL11.GL_LINE );
     }
 
     private void createInputHandler(){

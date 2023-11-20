@@ -41,7 +41,7 @@ public class Render {
     public void renderWorldObjectsWithSameShader(List<WorldObject> WOs){
         for(WorldObject wo : WOs){
             float rotation = wo.getRotation().x + 0.5f;
-            wo.setRotation(rotation, 0, 0);
+            //wo.setRotation(rotation, 0, 0);
             renderWorldObject(wo);
         }
     }

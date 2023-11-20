@@ -36,13 +36,15 @@ public class Boot {
     private void registerUsedShaders(){
         WOManager.registerShader(ShaderManager.getShaderColored());
         WOManager.registerShader(ShaderManager.getShaderTextured());
+        WOManager.registerShader(ShaderManager.getShaderTexturedNormals());
     }
 
     public void loop(){
         Camera camera = new Camera();
 
-        WorldObject texturedDemo = DemoWorldObjects.generateDemoTexturedCubeGameObject();
-        WorldObject coloredDemo = DemoWorldObjects.generateDemoColoredCubeGameObject();
+        //WorldObject texturedDemo = DemoWorldObjects.generateDemoTexturedCubeGameObject();
+        //WorldObject coloredDemo = DemoWorldObjects.generateDemoColoredCubeGameObject();
+        WorldObject objFileDemo = DemoWorldObjects.generateDemoUsingOBJFile();
 
         Render render = new Render();
         while(!window.shouldClose()) {

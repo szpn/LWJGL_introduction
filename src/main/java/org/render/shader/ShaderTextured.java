@@ -13,6 +13,9 @@ public class ShaderTextured extends Shader{
     public ShaderTextured() {
         super("Textured.vs", "Textured.fs");
     }
+    protected ShaderTextured(String vert, String frag){
+        super(vert, frag);
+    }
 
     @Override
     public void prepareForDrawingMesh(Mesh mesh){
