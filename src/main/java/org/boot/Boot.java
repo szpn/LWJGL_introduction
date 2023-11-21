@@ -37,6 +37,7 @@ public class Boot {
         WOManager.registerShader(ShaderManager.getShaderColored());
         WOManager.registerShader(ShaderManager.getShaderTextured());
         WOManager.registerShader(ShaderManager.getShaderTexturedNormals());
+        WOManager.registerShader(ShaderManager.getShaderMaterialized());
     }
 
     public void loop(){

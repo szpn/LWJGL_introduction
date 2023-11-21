@@ -1,6 +1,7 @@
 package org.boot;
 
 import org.manager.ShaderManager;
+import org.render.shader.ShaderMaterialized;
 import org.render.shader.ShaderTexturedNormals;
 import org.worldobject.Mesh;
 import org.worldobject.MeshLoader;
@@ -14,6 +15,7 @@ public class DemoWorldObjects {
     private static final ShaderColored shaderColored = ShaderManager.getShaderColored();
     private static final ShaderTextured shaderTextured = ShaderManager.getShaderTextured();
     private static final ShaderTexturedNormals shaderTexturedNormals = ShaderManager.getShaderTexturedNormals();
+    private static final ShaderMaterialized shaderMaterialized = ShaderManager.getShaderMaterialized();
     static public WorldObject generateDemoTexturedCubeGameObject(){
         float[] vertices = {
                 -0.5f,  0.5f,   -0.5f,
@@ -109,10 +111,14 @@ public class DemoWorldObjects {
 
     static public WorldObject generateDemoUsingOBJFile(){
         Mesh mesh = OBJLoader.OBJtoMesh("owlbear.obj");
-        MeshMaterial material = new MeshMaterial("owlbear.png");
+
+        MeshMaterial material = new MeshMaterial();
+        material.setTextureFromPath("owlbear.png");
+
         mesh.setMaterial(material);
+
         WorldObject demoOBJ = new WorldObject(mesh);
-        demoOBJ.addShader(shaderTexturedNormals);
+        demoOBJ.addShader(shaderMaterialized);
         demoOBJ.setPosition(-1,-3f,-2f);
 
         return demoOBJ;

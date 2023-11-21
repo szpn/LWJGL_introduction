@@ -1,12 +1,13 @@
 package org.worldobject;
 
+import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.render.Texture;
 
 public class MeshMaterial {
-    private static final Vector4f DEFAULT_COLOR = new Vector4f(1.0f, 1.0f, 1.0f, 1.0f);
+    private static final Vector3f DEFAULT_COLOR = new Vector3f(1.0f, 1.0f, 1.0f);
 
-    private Vector4f diffuseColor;
+    private Vector3f diffuseColor;
     private int textureID;
     private boolean isTextured;
 
@@ -19,7 +20,7 @@ public class MeshMaterial {
         this.isTextured = true;
     }
 
-    public Vector4f getDiffuseColor() {
+    public Vector3f getDiffuseColor() {
         return diffuseColor;
     }
 
@@ -31,7 +32,7 @@ public class MeshMaterial {
         return this.isTextured;
     }
 
-    public void setDiffuseColor(Vector4f diffuseColor) {
+    public void setDiffuseColor(Vector3f diffuseColor) {
         this.diffuseColor = diffuseColor;
     }
 
