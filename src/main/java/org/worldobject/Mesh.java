@@ -6,22 +6,28 @@ public class Mesh {
 
     private int vao;
     private int vertices;
-    private int texture;
+    private MeshMaterial material;
 
 
 
     public Mesh(int vao, int vertex) {
         this.vao = vao;
         this.vertices = vertex;
-        this.texture = Texture.loadTexture("missing.png");
+        this.material = new MeshMaterial();
     }
 
-    public void addTextureFromFile(String texture) {
-        this.texture = Texture.loadTexture(texture);
+    public Mesh(int vao, int vertex, MeshMaterial material){
+        this.vao = vao;
+        this.vertices = vertex;
+        this.material = material;
     }
 
-    public int getTextureID(){
-        return this.texture;
+    public MeshMaterial getMaterial(){
+        return this.material;
+    }
+
+    public void setMaterial(MeshMaterial material) {
+        this.material = material;
     }
 
     public int getVaoID() {

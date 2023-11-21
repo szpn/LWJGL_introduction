@@ -60,6 +60,7 @@ public class WorldObject {
         return mesh;
     }
 
+
     public void addShader(Shader shader){
         WOManager.registerWorldObjectUsesShader(this, shader);
     }

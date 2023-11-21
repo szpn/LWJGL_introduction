@@ -6,6 +6,7 @@ import org.worldobject.Mesh;
 import org.worldobject.MeshLoader;
 import org.render.shader.ShaderColored;
 import org.render.shader.ShaderTextured;
+import org.worldobject.MeshMaterial;
 import org.worldobject.WorldObject;
 import org.worldobject.objloader.OBJLoader;
 
@@ -61,7 +62,8 @@ public class DemoWorldObjects {
                 1f, 1f
         };
         Mesh mesh = MeshLoader.createTexturedMesh(vertices, indices, UVs);
-        mesh.addTextureFromFile("bricks.jpg");
+        MeshMaterial material = new MeshMaterial("bricks.jpg");
+        mesh.setMaterial(material);
         WorldObject demoTexturedObject = new WorldObject(mesh);
         demoTexturedObject.addShader(shaderTextured);
         demoTexturedObject.setPosition(1,0,-2f);
@@ -106,7 +108,9 @@ public class DemoWorldObjects {
     }
 
     static public WorldObject generateDemoUsingOBJFile(){
-        Mesh mesh = OBJLoader.OBJtoMesh("bunny.obj");
+        Mesh mesh = OBJLoader.OBJtoMesh("owlbear.obj");
+        MeshMaterial material = new MeshMaterial("owlbear.png");
+        mesh.setMaterial(material);
         WorldObject demoOBJ = new WorldObject(mesh);
         demoOBJ.addShader(shaderTexturedNormals);
         demoOBJ.setPosition(-1,-3f,-2f);

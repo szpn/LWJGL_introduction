@@ -20,7 +20,7 @@ public class ShaderTextured extends Shader{
     @Override
     public void prepareForDrawingMesh(Mesh mesh){
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, mesh.getTextureID());
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, mesh.getMaterial().getTextureID());
         GL20.glEnableVertexAttribArray(0); //vertex positions
         GL20.glEnableVertexAttribArray(1); //texture coordinates (x,y)
     }
