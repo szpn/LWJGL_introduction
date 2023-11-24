@@ -2,6 +2,7 @@ package org.render.shader;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
@@ -18,14 +19,16 @@ public class ShaderMaterialized extends Shader{
     public ShaderMaterialized(){
         super("Materialized.vs", "Materialized.fs");
     }
+    protected ShaderMaterialized(String vert, String frag){
+        super(vert, frag);
+    }
 
     @Override
     public void prepareForDrawingMesh(Mesh mesh) {
-        MeshMaterial material = mesh.getMaterial();
         GL20.glEnableVertexAttribArray(0); //position
         GL20.glEnableVertexAttribArray(1); //texture coordinates
 
-        prepareRenderingForMaterial(material);
+        prepareRenderingForMaterial( mesh.getMaterial());
     }
 
     private void prepareRenderingForMaterial(MeshMaterial material){
@@ -63,7 +66,7 @@ public class ShaderMaterialized extends Shader{
         GL20.glUniform1i(textureSampler, 0);
     }
 
-    private void setMeshColor(Vector3f color){
+    private void setMeshColor(Vector4f color){
         this.loadVector(fragmentColor, color);
     }
 

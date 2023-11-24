@@ -1,9 +1,8 @@
 package org.manager;
 
-import org.render.shader.ShaderColored;
-import org.render.shader.ShaderMaterialized;
-import org.render.shader.ShaderTextured;
-import org.render.shader.ShaderTexturedNormals;
+import org.joml.Vector3f;
+import org.render.light.PointLight;
+import org.render.shader.*;
 
 import static java.lang.System.exit;
 
@@ -12,6 +11,19 @@ public class ShaderManager {
     private static ShaderTextured shaderTextured = new ShaderTextured();
     private static ShaderTexturedNormals shaderTexturedNormals = new ShaderTexturedNormals();
     private static ShaderMaterialized shaderMaterialized = new ShaderMaterialized();
+    private static ShaderMaterializedLightning shaderMaterializedLightning = new ShaderMaterializedLightning();
+
+    public static void attachPointLightToShaders(PointLight pointLight){
+        shaderMaterializedLightning.setPointLight(pointLight);
+    }
+
+    public static void attachCameraPosToShaders(Vector3f cameraPos){
+        shaderMaterializedLightning.setCameraPos(cameraPos);
+    }
+
+    public static void setAmbientLight(Vector3f color) {
+        shaderMaterializedLightning.setAmbientLight(color);
+    }
 
     public static ShaderColored getShaderColored() {
         return shaderColored;
@@ -28,4 +40,9 @@ public class ShaderManager {
     public static ShaderMaterialized getShaderMaterialized() {
         return  shaderMaterialized;
     }
+
+    public static ShaderMaterializedLightning getShaderMaterializedLightning() {
+        return shaderMaterializedLightning;
+    }
+
 }

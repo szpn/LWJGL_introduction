@@ -6,13 +6,13 @@ out vec4 fragColor;
 
 uniform sampler2D textureSampler;
 uniform bool usesTexture;
-uniform vec3 meshColor;
+uniform vec4 meshColor;
 
 void main(){
     if(usesTexture){
         fragColor = texture(textureSampler,pass_uvs);
     } else{
-        fragColor = vec4(meshColor, 1.0);
+        fragColor = meshColor;
     }
 
 }

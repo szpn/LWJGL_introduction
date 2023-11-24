@@ -1,11 +1,14 @@
 package org.render;
 import org.joml.Matrix4f;
+import org.joml.Vector3f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
+import org.manager.ShaderManager;
 import org.render.camera.Camera;
 import org.render.shader.Shader;
+import org.render.shader.ShaderMaterializedLightning;
 import org.worldobject.Mesh;
 import org.worldobject.WorldObject;
 
@@ -14,7 +17,7 @@ import java.util.List;
 public class Render {
     private Transformation transformation;
     private Shader shader;
-    private Matrix4f cameraViewMatrix;
+    public Matrix4f cameraViewMatrix;
 
     public Render(){
         init();
@@ -40,8 +43,6 @@ public class Render {
 
     public void renderWorldObjectsWithSameShader(List<WorldObject> WOs){
         for(WorldObject wo : WOs){
-            float rotation = wo.getRotation().x + 0.5f;
-            //wo.setRotation(rotation, 0, 0);
             renderWorldObject(wo);
         }
     }
