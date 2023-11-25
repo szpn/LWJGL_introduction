@@ -11,6 +11,7 @@ import org.settings.WindowSettings;
 
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11C.GL_DEPTH_TEST;
 import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -87,6 +88,9 @@ public class Window {
 
         GL.createCapabilities();
         GL11.glEnable(GL_DEPTH_TEST);
+        GL11.glEnable(GL_BLEND);
+        GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
         //GL11.glPolygonMode( GL11.GL_FRONT_AND_BACK, GL11.GL_LINE );
     }
 
