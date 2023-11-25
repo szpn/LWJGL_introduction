@@ -1,5 +1,6 @@
 package org.boot;
 
+import org.joml.Vector4f;
 import org.manager.ShaderManager;
 import org.render.shader.*;
 import org.worldobject.Mesh;
@@ -19,6 +20,8 @@ public class DemoWorldObjects {
         Mesh mesh = OBJLoader.OBJtoMesh("cube.obj");
 
         MeshMaterial material = new MeshMaterial();
+        material.setAmbientColor(new Vector4f(1f,1f,1f,1f));
+        material.setDiffuseColor(new Vector4f(1f,1f,1f,1f));
         //material.setTextureFromPath("bricks.jpg");
 
         mesh.setMaterial(material);
@@ -26,6 +29,24 @@ public class DemoWorldObjects {
         WorldObject demoTexturedObject = new WorldObject(mesh);
         demoTexturedObject.addShader(shaderMaterializedLightning);
         demoTexturedObject.setPosition(0,1,-5f);
+
+        return demoTexturedObject;
+    }
+
+    static public WorldObject generateDemoTexturedCubeGameObjectNoLightning(){
+
+        Mesh mesh = OBJLoader.OBJtoMesh("cube.obj");
+
+        MeshMaterial material = new MeshMaterial();
+        material.setAmbientColor(new Vector4f(1f,1f,1f,1f));
+        material.setDiffuseColor(new Vector4f(1f,1f,1f,1f));
+
+        mesh.setMaterial(material);
+
+        WorldObject demoTexturedObject = new WorldObject(mesh);
+        demoTexturedObject.addShader(shaderMaterialized);
+        demoTexturedObject.setPosition(0,1,-5f);
+        demoTexturedObject.setScale(0.1f);
 
         return demoTexturedObject;
     }

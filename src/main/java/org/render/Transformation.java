@@ -3,7 +3,9 @@ package org.render;
 import org.boot.Boot;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 import org.render.camera.Camera;
+import org.render.light.PointLight;
 import org.settings.RenderSettings;
 import org.worldobject.WorldObject;
 
@@ -54,6 +56,15 @@ public class Transformation {
     public Matrix4f calculateObjectViewMatrix(Matrix4f worldMatrix, Matrix4f viewMatrix){
         Matrix4f objectViewMatrix = new Matrix4f(viewMatrix);
         return objectViewMatrix.mul(worldMatrix);
+    }
+
+    public PointLight convertLightPosToWorldPos(PointLight pointLight){
+        PointLight worldPointLight = new PointLight(pointLight);
+        Vector3f lightPos = worldPointLight.getPosition();
+        Vector4f aux = new Vector4f(lightPos, 1);
+        aux.mul(viewMatrix);
+        lightPos.set(aux.x ,aux.y, aux.z);
+        return worldPointLight;
     }
 
 

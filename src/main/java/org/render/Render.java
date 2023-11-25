@@ -6,7 +6,9 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.manager.ShaderManager;
+import org.manager.WorldObjectManager;
 import org.render.camera.Camera;
+import org.render.light.PointLight;
 import org.render.shader.Shader;
 import org.render.shader.ShaderMaterializedLightning;
 import org.worldobject.Mesh;
@@ -27,28 +29,53 @@ public class Render {
         transformation = new Transformation();
     }
 
-    public void enableShader(Shader shader){
+
+    private void useCameraView(Camera camera){
+        this.cameraViewMatrix = transformation.getViewMatrix(camera);
+    }
+
+    public void renderScene(Scene scene){
+        useCameraView(scene.getCamera());
+        for(Shader shader : scene.getUsedShaders()){
+            enableShader(shader);
+            prepareEnabledShader(scene);
+
+
+            List<WorldObject> WOUsingShader = scene.getWOManager().getWorldObjectsUsingShader(shader);
+            renderWorldObjectsWithSameShader(WOUsingShader);
+
+            disableCurrentShader();
+        }
+    }
+
+    private void enableShader(Shader shader){
         this.shader = shader;
         shader.start();
         shader.setProjection(transformation.getProjectionMatrix());
     }
 
-    public void disableCurrentShader(){
+
+    private void prepareEnabledShader(Scene scene){
+        ShaderManager.setAmbientLight(scene.getAmbientLight());
+
+        PointLight pointLightInWorldPos = transformation.convertLightPosToWorldPos(scene.getPointLight());
+        ShaderManager.attachPointLightToShaders(pointLightInWorldPos);
+
+        ShaderManager.attachCameraPosToShaders(scene.getCamera().getPosition());
+    }
+
+    private void disableCurrentShader(){
         shader.stop();
     }
 
-    public void useCameraView(Camera camera){
-        this.cameraViewMatrix = transformation.getViewMatrix(camera);
-    }
-
-    public void renderWorldObjectsWithSameShader(List<WorldObject> WOs){
+    private void renderWorldObjectsWithSameShader(List<WorldObject> WOs){
         for(WorldObject wo : WOs){
             renderWorldObject(wo);
         }
     }
 
 
-    public void renderWorldObject(WorldObject wo){
+    private void renderWorldObject(WorldObject wo){
         Matrix4f objectWorldMatrix = transformation.getWorldMatrix(wo);
         Matrix4f objectViewMatrix = transformation.calculateObjectViewMatrix(objectWorldMatrix, this.cameraViewMatrix);
         shader.setWorldMatrix(objectViewMatrix);
