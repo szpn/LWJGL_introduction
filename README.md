@@ -7,7 +7,7 @@ The primary goal of this project is to learn the OpenGL API and enhance my objec
 ## Screenshots
 
 ![App Screenshot](https://i.imgur.com/jtsDB4W.gif)
-
+![App Screenshot](https://i.imgur.com/uyfUXDc.gif)
 
 ## Features/ To-Do List
 
@@ -19,7 +19,9 @@ The primary goal of this project is to learn the OpenGL API and enhance my objec
 - [x]  Camera rotation with mouse movement
 - [x]  Camera movement with keyboard inputs
 - [x]  OBJ file conversion to meshes
-- [ ]  Implementation of light and shadows
+- [x]  Implementation of simple lightning
+- [ ]  Implementation of complex lightning
+- [ ]  Implementation of shadows
 - [ ]  Modularity for WorldObjects
 - [ ]  Animations for WorldObjects
 - [ ]  Basic collision detection and physics
