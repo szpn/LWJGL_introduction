@@ -33,3 +33,4 @@ The primary goal of this project is to learn the OpenGL API and enhance my objec
 - [OpenGL Beginner's Tutorials](https://www.opengl-tutorial.org/beginners-tutorials/)
 - [LWJGL Game Design Guide](https://coffeebeancode.gitbook.io/lwjgl-game-design/)
 - [3D Game Development with LWJGL](https://lwjglgamedev.gitbooks.io/3d-game-development-with-lwjgl/content/)
+- [Owlbear model](https://sketchfab.com/3d-models/owlbear-b073d2499a7a40528d3000bebcd65783)
