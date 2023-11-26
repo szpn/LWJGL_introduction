@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL20;
 import org.joml.Vector3f;
 import org.joml.Matrix4f;
 import org.lwjgl.system.MemoryStack;
-import org.worldobject.Mesh;
+import org.scene.worldobject.Mesh;
 
 
 public abstract class Shader{

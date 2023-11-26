@@ -4,10 +4,10 @@ import org.boot.Boot;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
-import org.render.camera.Camera;
-import org.render.light.PointLight;
+import org.scene.camera.Camera;
+import org.scene.light.PointLight;
 import org.settings.RenderSettings;
-import org.worldobject.WorldObject;
+import org.scene.worldobject.WorldObject;
 
 public class Transformation {
     private final Matrix4f projectionMatrix;

@@ -1,4 +1,4 @@
-package org.render.camera;
+package org.scene.camera;
 
 import org.boot.Boot;
 import org.input.InputHandler;

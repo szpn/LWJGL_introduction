@@ -1,12 +1,12 @@
-package org.render;
+package org.scene;
 
 import org.joml.Vector3f;
 import org.manager.ShaderManager;
 import org.manager.WorldObjectManager;
-import org.render.camera.Camera;
-import org.render.light.PointLight;
+import org.scene.camera.Camera;
+import org.scene.light.PointLight;
 import org.render.shader.Shader;
-import org.worldobject.WorldObject;
+import org.scene.worldobject.WorldObject;
 
 import java.util.List;
 

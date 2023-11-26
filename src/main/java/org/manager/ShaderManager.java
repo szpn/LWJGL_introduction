@@ -1,15 +1,11 @@
 package org.manager;
 
 import org.joml.Vector3f;
-import org.render.light.PointLight;
+import org.scene.light.PointLight;
 import org.render.shader.*;
-
-import static java.lang.System.exit;
 
 public class ShaderManager {
     private static ShaderColored shaderColored  = new ShaderColored();
-    private static ShaderTextured shaderTextured = new ShaderTextured();
-    private static ShaderTexturedNormals shaderTexturedNormals = new ShaderTexturedNormals();
     private static ShaderMaterialized shaderMaterialized = new ShaderMaterialized();
     private static ShaderMaterializedLightning shaderMaterializedLightning = new ShaderMaterializedLightning();
 
@@ -29,13 +25,7 @@ public class ShaderManager {
         return shaderColored;
     }
 
-    public static ShaderTextured getShaderTextured() {
-        return shaderTextured;
-    }
 
-    public static ShaderTexturedNormals getShaderTexturedNormals() {
-        return shaderTexturedNormals;
-    }
 
     public static ShaderMaterialized getShaderMaterialized() {
         return  shaderMaterialized;

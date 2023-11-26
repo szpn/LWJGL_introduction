@@ -1,4 +1,4 @@
-package org.worldobject.objloader;
+package org.scene.worldobject.objloader;
 
 class IdxGroup {
 

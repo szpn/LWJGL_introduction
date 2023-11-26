@@ -3,11 +3,12 @@ package org.boot;
 
 import org.joml.Vector3f;
 import org.render.*;
-import org.render.camera.Camera;
-import org.render.light.PointLight;
+import org.scene.camera.Camera;
+import org.scene.light.PointLight;
 import org.render.window.Window;
+import org.scene.Scene;
 import org.settings.WindowSettings;
-import org.worldobject.WorldObject;
+import org.scene.worldobject.WorldObject;
 
 
 

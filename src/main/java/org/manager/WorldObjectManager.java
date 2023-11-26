@@ -1,7 +1,7 @@
 package org.manager;
 
 import org.render.shader.Shader;
-import org.worldobject.WorldObject;
+import org.scene.worldobject.WorldObject;
 
 import java.util.*;
 

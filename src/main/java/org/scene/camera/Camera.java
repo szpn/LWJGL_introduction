@@ -1,11 +1,6 @@
-package org.render.camera;
+package org.scene.camera;
 
-import org.boot.Boot;
-import org.input.InputListener;
-import org.input.inputevent.MouseEvent;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.settings.CameraSettings;
 
 public class Camera{
     private final CameraController cameraController;

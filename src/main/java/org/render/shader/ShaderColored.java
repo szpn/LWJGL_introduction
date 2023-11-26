@@ -2,7 +2,7 @@ package org.render.shader;
 
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL20;
-import org.worldobject.Mesh;
+import org.scene.worldobject.Mesh;
 
 public class ShaderColored extends Shader{
 

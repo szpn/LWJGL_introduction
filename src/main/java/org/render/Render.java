@@ -1,18 +1,14 @@
 package org.render;
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.manager.ShaderManager;
-import org.manager.WorldObjectManager;
-import org.render.camera.Camera;
-import org.render.light.PointLight;
+import org.scene.camera.Camera;
+import org.scene.light.PointLight;
 import org.render.shader.Shader;
-import org.render.shader.ShaderMaterializedLightning;
-import org.worldobject.Mesh;
-import org.worldobject.WorldObject;
+import org.scene.Scene;
+import org.scene.worldobject.Mesh;
+import org.scene.worldobject.WorldObject;
 
 import java.util.List;
 
@@ -30,10 +26,8 @@ public class Render {
     }
 
 
-    private void useCameraView(Camera camera){
-        this.cameraViewMatrix = transformation.getViewMatrix(camera);
-    }
 
+    //TODO: change pipeline: get shaders -> get meshes using specific mesh -> get WOs using specific mesh -> render mesh with WO properties
     public void renderScene(Scene scene){
         useCameraView(scene.getCamera());
         for(Shader shader : scene.getUsedShaders()){
@@ -46,6 +40,10 @@ public class Render {
 
             disableCurrentShader();
         }
+    }
+
+    private void useCameraView(Camera camera){
+        this.cameraViewMatrix = transformation.getViewMatrix(camera);
     }
 
     private void enableShader(Shader shader){

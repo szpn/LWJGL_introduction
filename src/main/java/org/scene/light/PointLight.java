@@ -1,4 +1,4 @@
-package org.render.light;
+package org.scene.light;
 
 import org.joml.Vector3f;
 
@@ -9,7 +9,7 @@ public class PointLight {
     private Attenuation attenuation;
 
     public PointLight(Vector3f position,Vector3f color,float intensity) {
-        this.attenuation = new Attenuation(0,0,1f);
+        this.attenuation = new Attenuation(5,0.5f,0.1f);
         this.position = position;
         this.color = color;
         this.intensity = intensity;

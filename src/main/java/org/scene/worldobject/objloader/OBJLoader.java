@@ -1,10 +1,9 @@
-package org.worldobject.objloader;
+package org.scene.worldobject.objloader;
 
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.render.Texture;
-import org.worldobject.Mesh;
-import org.worldobject.MeshLoader;
+import org.scene.worldobject.Mesh;
+import org.scene.worldobject.MeshLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +11,6 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 // based on: https://lwjglgamedev.gitbooks.io/3d-game-development-with-lwjgl/content/chapter09/chapter9.html

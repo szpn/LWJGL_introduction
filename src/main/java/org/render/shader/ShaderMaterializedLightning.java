@@ -1,12 +1,11 @@
 package org.render.shader;
 
-import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL20;
-import org.render.light.Attenuation;
-import org.render.light.PointLight;
-import org.worldobject.Mesh;
-import org.worldobject.MeshMaterial;
+import org.scene.light.Attenuation;
+import org.scene.light.PointLight;
+import org.scene.worldobject.Mesh;
+import org.scene.worldobject.MeshMaterial;
 
 public class ShaderMaterializedLightning extends  ShaderMaterialized{
 

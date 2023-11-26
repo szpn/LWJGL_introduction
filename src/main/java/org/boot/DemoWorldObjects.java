@@ -3,16 +3,14 @@ package org.boot;
 import org.joml.Vector4f;
 import org.manager.ShaderManager;
 import org.render.shader.*;
-import org.worldobject.Mesh;
-import org.worldobject.MeshLoader;
-import org.worldobject.MeshMaterial;
-import org.worldobject.WorldObject;
-import org.worldobject.objloader.OBJLoader;
+import org.scene.worldobject.Mesh;
+import org.scene.worldobject.MeshLoader;
+import org.scene.worldobject.MeshMaterial;
+import org.scene.worldobject.WorldObject;
+import org.scene.worldobject.objloader.OBJLoader;
 
 public class DemoWorldObjects {
     private static final ShaderColored shaderColored = ShaderManager.getShaderColored();
-    private static final ShaderTextured shaderTextured = ShaderManager.getShaderTextured();
-    private static final ShaderTexturedNormals shaderTexturedNormals = ShaderManager.getShaderTexturedNormals();
     private static final ShaderMaterialized shaderMaterialized = ShaderManager.getShaderMaterialized();
     private static final ShaderMaterializedLightning shaderMaterializedLightning = ShaderManager.getShaderMaterializedLightning();
     static public WorldObject generateDemoTexturedCubeGameObject(){
@@ -22,6 +20,7 @@ public class DemoWorldObjects {
         MeshMaterial material = new MeshMaterial();
         material.setAmbientColor(new Vector4f(1f,1f,1f,1f));
         material.setDiffuseColor(new Vector4f(1f,1f,1f,1f));
+        material.setReflectance(1f);
         //material.setTextureFromPath("bricks.jpg");
 
         mesh.setMaterial(material);

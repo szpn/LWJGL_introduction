@@ -1,4 +1,4 @@
-package org.worldobject;
+package org.scene.worldobject;
 import java.nio.FloatBuffer; //The buffers that the Vertex data is ultimately stored in
 import java.nio.IntBuffer;
 import java.util.ArrayList;

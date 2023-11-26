@@ -1,13 +1,12 @@
 package org.render.shader;
 
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
-import org.worldobject.Mesh;
-import org.worldobject.MeshMaterial;
+import org.scene.worldobject.Mesh;
+import org.scene.worldobject.MeshMaterial;
 
 public class ShaderMaterialized extends Shader{
     private int projectionMatrix;

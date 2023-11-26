@@ -1,4 +1,4 @@
-package org.render.light;
+package org.scene.light;
 
 public class Attenuation {
     private float constant;

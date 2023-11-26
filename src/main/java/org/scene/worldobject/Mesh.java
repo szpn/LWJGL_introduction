@@ -1,6 +1,4 @@
-package org.worldobject;
-
-import org.render.Texture;
+package org.scene.worldobject;
 
 public class Mesh {
 
