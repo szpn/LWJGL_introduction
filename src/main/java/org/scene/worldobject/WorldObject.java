@@ -7,14 +7,16 @@ import org.render.shader.Shader;
 public class WorldObject {
     private static WorldObjectManager WOManager;
     private final Mesh mesh;
+    private Shader shader;
     private final Vector3f position;
     private float scale;
-    private Vector3f rotation;
+    private final Vector3f rotation;
     public WorldObject(Mesh mesh){
         if(!isManagerBound()){
             throw new RuntimeException("WorldObjectManager is not bound to WorldObject class!");
         }
         this.mesh = mesh;
+        this.shader = null;
         this.position = new Vector3f(0,0,0);
         this.scale = 1f;
         this.rotation = new Vector3f(0,0,0);
